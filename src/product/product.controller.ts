@@ -16,29 +16,26 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ResponseProductDto } from './dto/response-product.dto';
 
-import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @Controller('product')
 @ApiTags('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
- 
-
-
-  
   @Post()
   @ApiOperation({ summary: 'Create a new Product' })
   @ApiResponse({ status: 201, type: ResponseProductDto })
   @ApiBody({ type: CreateProductDto })
-  async create(
-    @Body() createProductDto: CreateProductDto,
-  ): Promise<Product> {
+  async create(@Body() createProductDto: CreateProductDto): Promise<Product> {
     return await this.productService.create(createProductDto);
   }
-
-
-
 
   @Get()
   @ApiOperation({ summary: 'Get all Products' })
@@ -54,10 +51,6 @@ export class ProductController {
   async findOne(@Param('id') id: string): Promise<Product> {
     return await this.productService.findOne(id);
   }
-  
-
-
-
 
   @Put(':id')
   @ApiOperation({ summary: 'Update a Product by id' })
@@ -70,11 +63,6 @@ export class ProductController {
   ): Promise<Product> {
     return await this.productService.update(id, updateProductDto);
   }
-
-
-
-
-
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a Product by id' })
