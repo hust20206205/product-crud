@@ -47,19 +47,30 @@ export class ProductController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productService.remove(id);
+  @ApiOperation({ summary: 'Delete a Product by id' })
+  @ApiResponse({ status: 200 })
+  @ApiParam({ name: 'id', required: true })
+  async remove(@Param('id') id: string): Promise<void> {
+    return await this.productService.remove(id);
   }
 }
-
-//   @Delete(':id')
-//   @ApiOperation({ summary: 'Delete a Product by id' })
-//   @ApiResponse({ status: 200 })
-//   @ApiParam({ name: 'id', required: true })
-//   async remove(@Param('id') id: string): Promise<void> {
-//     return await this.productService.remove(id);
-//   }
-
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 //   @Post()
 //   @ApiOperation({ summary: 'Create a new Product' })
 //   @ApiResponse({ status: 201, type: ResponseProductDto })
