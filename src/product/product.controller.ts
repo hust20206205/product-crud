@@ -8,25 +8,14 @@ import {
   Delete,
 } from '@nestjs/common';
 
-
-
-
-
 import { Product } from './entities/product.entity';
 import { ProductService } from './product.service';
-
-
 
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ResponseProductDto } from './dto/response-product.dto';
 
-
-
-
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-
-
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('product')
 @ApiTags('product')
@@ -46,10 +35,12 @@ export class ProductController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productService.findOne(id);
+  @ApiOperation({ summary: 'Get a Product by id' })
+  @ApiResponse({ status: 200, type: ResponseProductDto })
+  @ApiParam({ name: 'id', required: true })
+  async findOne(@Param('id') id: string): Promise<Product> {
+    return await this.productService.findOne(id);
   }
-
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
     return this.productService.update(id, updateProductDto);
@@ -60,43 +51,34 @@ export class ProductController {
     return this.productService.remove(id);
   }
 }
- 
-
-//   @Get(':id')
-//   @ApiOperation({ summary: 'Get a notification by id' })
-//   @ApiResponse({ status: 200, type: ResponseNotificationDto })
-//   @ApiParam({ name: 'id', required: true })
-//   async findOne(@Param('id') id: string): Promise<Notification> {
-//     return await this.notificationService.findOne(id);
-//   }
 
 //   @Delete(':id')
-//   @ApiOperation({ summary: 'Delete a notification by id' })
+//   @ApiOperation({ summary: 'Delete a Product by id' })
 //   @ApiResponse({ status: 200 })
 //   @ApiParam({ name: 'id', required: true })
 //   async remove(@Param('id') id: string): Promise<void> {
-//     return await this.notificationService.remove(id);
+//     return await this.productService.remove(id);
 //   }
 
 //   @Post()
-//   @ApiOperation({ summary: 'Create a new notification' })
-//   @ApiResponse({ status: 201, type: ResponseNotificationDto })
-//   @ApiBody({ type: CreateNotificationDto })
+//   @ApiOperation({ summary: 'Create a new Product' })
+//   @ApiResponse({ status: 201, type: ResponseProductDto })
+//   @ApiBody({ type: CreateProductDto })
 //   async create(
-//     @Body() createNotificationDto: CreateNotificationDto,
-//   ): Promise<Notification> {
-//     return await this.notificationService.create(createNotificationDto);
+//     @Body() createProductDto: CreateProductDto,
+//   ): Promise<Product> {
+//     return await this.productService.create(createProductDto);
 //   }
 
 //   @Put(':id')
-//   @ApiOperation({ summary: 'Update a notification by id' })
-//   @ApiResponse({ status: 200, type: ResponseNotificationDto })
+//   @ApiOperation({ summary: 'Update a Product by id' })
+//   @ApiResponse({ status: 200, type: ResponseProductDto })
 //   @ApiParam({ name: 'id', required: true })
-//   @ApiBody({ type: UpdateNotificationDto })
+//   @ApiBody({ type: UpdateProductDto })
 //   async update(
 //     @Param('id') id: string,
-//     @Body() updateNotificationDto: UpdateNotificationDto,
-//   ): Promise<Notification> {
-//     return await this.notificationService.update(id, updateNotificationDto);
+//     @Body() updateProductDto: UpdateProductDto,
+//   ): Promise<Product> {
+//     return await this.productService.update(id, updateProductDto);
 //   }
 // }
