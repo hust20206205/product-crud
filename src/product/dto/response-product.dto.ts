@@ -1,11 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-
 import * as faker from 'faker';
-
-
-
-
 
 export class ResponseProductDto {
   @ApiProperty({
@@ -22,7 +17,7 @@ export class ResponseProductDto {
 
   @ApiProperty({
     description: 'Ngày tạo sản phẩm',
-    example:  faker.date.past(),
+    example: faker.date.past(),
   })
   createdAt: Date;
 }
