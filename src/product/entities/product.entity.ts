@@ -7,7 +7,7 @@ import {
 
 @Entity()
 export class Product {
-  @PrimaryGeneratedColumn('uuid') 
+  @PrimaryGeneratedColumn('uuid')
   productId: string;
 
   @Column()
