@@ -30,7 +30,7 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a new Product' })
+  @ApiOperation({ summary: 'Tạo sản phẩm mới' })
   @ApiResponse({ status: 201, type: ResponseProductDto })
   @ApiBody({ type: CreateProductDto })
   async create(@Body() createProductDto: CreateProductDto): Promise<Product> {
@@ -38,14 +38,14 @@ export class ProductController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all Products' })
+  @ApiOperation({ summary: 'Lấy tất cả sản phẩm' })
   @ApiResponse({ status: 200, type: [ResponseProductDto] })
   async findAll(): Promise<Product[]> {
     return await this.productService.findAll();
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a Product by id' })
+  @ApiOperation({ summary: 'Lấy sản phẩm theo id' })
   @ApiResponse({ status: 200, type: ResponseProductDto })
   @ApiParam({ name: 'id', required: true })
   async findOne(@Param('id') id: string): Promise<Product> {
@@ -53,7 +53,7 @@ export class ProductController {
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Update a Product by id' })
+  @ApiOperation({ summary: 'Cập nhật sản phẩm theo id' })
   @ApiResponse({ status: 200, type: ResponseProductDto })
   @ApiParam({ name: 'id', required: true })
   @ApiBody({ type: UpdateProductDto })
@@ -65,7 +65,7 @@ export class ProductController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete a Product by id' })
+  @ApiOperation({ summary: 'Xóa sản phẩm theo id' })
   @ApiResponse({ status: 200 })
   @ApiParam({ name: 'id', required: true })
   async remove(@Param('id') id: string): Promise<void> {
