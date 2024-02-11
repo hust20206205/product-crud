@@ -1,0 +1,8 @@
+{
+    "code-runner.runInTerminal": true,
+    "files.autoSave": "afterDelay",
+    "code-runner.executorMap": {
+        "typescript": " npm   run format &&    NEST_DEBUG=true      npm   run start:dev         ", 
+    },
+    "editor.mouseWheelZoom": true
+}

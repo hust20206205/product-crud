@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "formulahendry.code-runner",
+        "michaelcurrin.auto-commit-msg",
+        "aaron-bond.better-comments",
+        "dracula-theme.theme-dracula",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "ms-azuretools.vscode-docker",
+    ]
+}
